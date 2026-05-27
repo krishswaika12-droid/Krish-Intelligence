@@ -214,17 +214,18 @@ export default function App() {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <button
   onClick={() => setHackerMode(!hackerMode)}
-  className={`px-4 py-2 border text-[10px] font-bold uppercase tracking-[0.2em] transition-all duration-500 rounded-lg cursor-pointer shimmer-btn
+  className={`px-2 sm:px-4 py-2 border text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.1em] sm:tracking-[0.2em] transition-all duration-500 rounded-lg cursor-pointer shimmer-btn
   ${
     hackerMode
       ? "border-emerald-500 text-emerald-400 bg-emerald-900/20 shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:bg-emerald-500 hover:text-black"
       : "border-indigo-600 text-indigo-600 bg-indigo-50 shadow-sm hover:bg-indigo-600 hover:text-white"
   }`}
 >
-  {hackerMode ? ">> RESTORE_NORMAL_MODE" : ">> INITIATE_HACKER_MODE"}
+  <span className="sm:hidden">{hackerMode ? "RESTORE" : "HACK"}</span>
+  <span className="hidden sm:inline">{hackerMode ? ">> RESTORE_NORMAL_MODE" : ">> INITIATE_HACKER_MODE"}</span>
 </button>
             <div className="hidden md:flex flex-col items-end gap-1">
               <div className="flex gap-1">
@@ -295,7 +296,7 @@ export default function App() {
               </div>
               
               <div
-  className={`max-w-[90%] sm:max-w-[75%] px-6 py-4 relative group transition-all duration-500 ${
+  className={`max-w-[95%] sm:max-w-[75%] px-4 sm:px-6 py-3 sm:py-4 relative group transition-all duration-500 ${
     msg.role === "user"
       ? hackerMode
         ? "bg-emerald-950/20 border border-emerald-800 text-emerald-100 shadow-[inset_0_0_20px_rgba(16,185,129,0.05)]"
@@ -343,20 +344,20 @@ export default function App() {
         </div>
 
         {/* Command Input Area */}
-        <div className={`p-6 border-t transition-all duration-700 ${
+        <div className={`p-3 sm:p-6 border-t transition-all duration-700 ${
           hackerMode 
             ? "bg-emerald-950/20 border-emerald-900/50 backdrop-blur-md" 
             : "bg-white/60 border-white/40 backdrop-blur-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.03)]"
         }`}>
-          <div className="relative max-w-4xl mx-auto flex items-center gap-3">
+          <div className="relative max-w-4xl mx-auto flex items-center gap-2 sm:gap-3">
             {hackerMode && (
-              <div className="flex items-center gap-2 px-4 py-4 border border-emerald-900/50 bg-black text-emerald-500 font-bold text-sm shadow-[0_0_20px_rgba(16,185,129,0.15)] group transition-all hover:border-emerald-500/50">
+              <div className="hidden sm:flex items-center gap-2 px-4 py-4 border border-emerald-900/50 bg-black text-emerald-500 font-bold text-sm shadow-[0_0_20px_rgba(16,185,129,0.15)] group transition-all hover:border-emerald-500/50">
                 <span className="animate-pulse">_</span>
                 <span className="group-hover:text-emerald-300 transition-colors">{">"}</span>
               </div>
             )}
             <label
-  className={`cursor-pointer px-4 py-4 border transition-all duration-300 text-sm
+  className={`cursor-pointer px-3 sm:px-4 py-3 sm:py-4 border transition-all duration-300 text-sm
   ${
     hackerMode
       ? "border-emerald-900/50 bg-black/60 text-emerald-400 hover:border-emerald-500/50"
@@ -377,7 +378,7 @@ export default function App() {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
-              className={`flex-1 outline-none px-6 py-4 transition-all duration-500 text-sm
+              className={`flex-1 outline-none px-4 sm:px-6 py-3 sm:py-4 transition-all duration-500 text-sm
 ${
   hackerMode
     ? "bg-black/60 border border-emerald-900/50 text-emerald-400 placeholder:text-emerald-900/50 focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/20 uppercase tracking-widest"
@@ -388,7 +389,7 @@ ${
             <button
               onClick={sendMessage}
               disabled={loading || !input.trim()}
-              className={`group relative p-4 transition-all active:scale-95 disabled:opacity-30 overflow-hidden ${
+              className={`group relative p-3 sm:p-4 transition-all active:scale-95 disabled:opacity-30 overflow-hidden ${
                 hackerMode 
                   ? "bg-emerald-900/20 border border-emerald-800 hover:bg-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.1)]" 
                   : "bg-indigo-600 border-0 text-white rounded-2xl shadow-xl shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-0.5"
@@ -401,12 +402,12 @@ ${
             </button>
           </div>
           
-          <div className={`mt-6 pt-4 border-t flex flex-wrap justify-between items-center gap-4 text-[9px] uppercase tracking-[0.2em] font-black px-2 ${
+          <div className={`mt-4 sm:mt-6 pt-4 border-t flex flex-col md:flex-row justify-between items-center gap-4 text-[8px] sm:text-[9px] uppercase tracking-[0.1em] sm:tracking-[0.2em] font-black px-2 ${
             hackerMode ? "border-emerald-900/30 text-emerald-900/60" : "border-slate-100 text-slate-400"
           }`}>
 
             {/* System Metrics */}
-            <div className="flex flex-wrap gap-4 items-center">
+            <div className="flex flex-wrap gap-2 sm:gap-4 items-center justify-center">
               <div className="flex items-center gap-2">
                 <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${hackerMode ? "bg-emerald-500 shadow-[0_0_8px_#10b981]" : "bg-green-500 shadow-[0_0_8px_#22c55e]"}`}></div>
                 <span>{hackerMode ? "SYSTEM_STATUS: OPERATIONAL" : "Core Services: Active"}</span>
