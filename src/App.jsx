@@ -2,7 +2,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Send, Terminal, User, Loader2, Zap, Trash2, Cpu, ShieldAlert, Activity } from "lucide-react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
-
+console.log(import.meta.env.VITE_GEMINI_API_KEY)
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 const genAI = new GoogleGenerativeAI(apiKey);
 
